@@ -1,6 +1,5 @@
 package io.github.sdxqw.termox.grapichs
 
-import io.github.sdxqw.termox.core.LWJGLCore
 import org.lwjgl.nanovg.NVGColor
 import org.lwjgl.nanovg.NanoVG
 
@@ -9,8 +8,6 @@ import org.lwjgl.nanovg.NanoVG
  * The NanoVG class provides static utility methods for rendering graphics using the NanoVG library.
  */
 object NanoVGC {
-
-    var nvg: Long = LWJGLCore().nvg
 
     /**
      * Returns an NVGColor object with the specified RGBA values.
@@ -32,9 +29,9 @@ object NanoVGC {
      * @param y      The y-coordinate of the rectangle's top-left corner.
      * @param width  The width of the rectangle.
      * @param height The height of the rectangle.
-     * @param color  The color to fill the rectangle with.
+     * @param color  The color to fill the rectangle width.
      */
-    fun drawRect(x: Float, y: Float, width: Float, height: Float, color: NVGColor) {
+    fun drawRect(nvg: Long, x: Float, y: Float, width: Float, height: Float, color: NVGColor) {
         NanoVG.nvgBeginPath(nvg)
         NanoVG.nvgRect(nvg, x, y, width, height)
         NanoVG.nvgFillColor(nvg, color)
@@ -49,9 +46,9 @@ object NanoVGC {
      * @param width      The width of the rectangle.
      * @param height     The height of the rectangle.
      * @param radius     The radius of the rectangle's corners.
-     * @param color      The color to fill the rectangle with.
+     * @param color      The color to fill the rectangle width.
      */
-    fun drawRoundedRect(x: Float, y: Float, width: Float, height: Float, radius: Float, color: NVGColor) {
+    fun drawRoundedRect(nvg: Long, x: Float, y: Float, width: Float, height: Float, radius: Float, color: NVGColor) {
         NanoVG.nvgBeginPath(nvg)
         NanoVG.nvgRoundedRect(nvg, x, y, width, height, radius)
         NanoVG.nvgFillColor(nvg, color)
@@ -68,7 +65,7 @@ object NanoVGC {
      * @param thickness the thickness of the line
      * @param color     the color of the line
      */
-    fun drawLine(x1: Float, y1: Float, x2: Float, y2: Float, thickness: Float, color: NVGColor) {
+    fun drawLine(nvg: Long, x1: Float, y1: Float, x2: Float, y2: Float, thickness: Float, color: NVGColor) {
         NanoVG.nvgBeginPath(nvg)
         NanoVG.nvgMoveTo(nvg, x1, y1)
         NanoVG.nvgLineTo(nvg, x2, y2)
@@ -89,6 +86,7 @@ object NanoVGC {
      * @param color    The color to fill the border with.
      */
     fun drawRoundedRectBorder(
+        nvg: Long,
         x: Float,
         y: Float,
         width: Float,

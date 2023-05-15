@@ -3,8 +3,10 @@ package io.github.sdxqw.termox.ui.basic
 open class UIScreen {
     open val components: MutableList<UIComponent> = mutableListOf()
 
-    fun addComponent(component: UIComponent) {
-        components.add(component)
+    fun addComponent(vararg components: UIComponent) {
+        components.forEach { component ->
+            this.components.add(component)
+        }
     }
 
     open fun initialize() {}

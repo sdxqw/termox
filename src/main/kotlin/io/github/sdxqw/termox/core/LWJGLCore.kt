@@ -48,7 +48,7 @@ class LWJGLCore : LWJGL() {
         glfwDefaultWindowHints()
         glfwWindowHint(GLFW_VISIBLE, GLFW_TRUE)
         glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE)
-        window = glfwCreateWindow(Utils.width, Utils.height, "KK Pong Game", NULL, NULL)
+        window = glfwCreateWindow(Utils.width, Utils.height, "Termox", NULL, NULL)
         if (window == NULL) {
             glfwTerminate()
             throw IllegalArgumentException("Failed to create the GLFW window")

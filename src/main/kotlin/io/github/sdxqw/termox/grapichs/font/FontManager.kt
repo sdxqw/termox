@@ -37,7 +37,7 @@ object FontManager {
      * @param fontSize the size of the font to use
      * @return the width of the text
      */
-    fun measureTextWidth(text: String, name: String, fontSize: Float): Float {
+    fun getTextWidth(text: String, name: String, fontSize: Float): Float {
         return font.measureTextWidth(text, name, fontSize)
     }
 
