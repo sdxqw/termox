@@ -4,22 +4,30 @@ import io.github.sdxqw.termox.ui.basic.UIScreen
 import io.github.sdxqw.termox.ui.menu.MainMenu
 
 class ManagerUI {
-    private val screens: MutableMap<String, UIScreen> = mutableMapOf()
+    private var currentScreen: UIScreen? = null
 
     init {
-        addScreen(MainMenu())
+        setScreen(MainMenu())
     }
 
-    private fun addScreen(screen: UIScreen) {
-        screens[screen.name] = screen
-        screen.initialize()
+    private fun setScreen(screen: UIScreen) {
+        currentScreen = screen
+        currentScreen?.initialize()
     }
 
-    fun setScreen(name: String) {
-        val screen = screens[name]
-        screen?.let {
-            it.drawScreen()
-            it.updateScreen()
-        }
+    fun initializeScreen() {
+        currentScreen?.initialize()
+    }
+
+    fun drawScreen(nvg: Long, window: Long, windowWidth: Int, windowHeight: Int) {
+        currentScreen?.drawScreen(nvg, window, windowWidth, windowHeight)
+    }
+
+    fun updateScreen(nvg: Long, window: Long, windowWidth: Int, windowHeight: Int) {
+        currentScreen?.updateScreen(nvg, window, windowWidth, windowHeight)
+    }
+
+    fun clearScreen(nvg: Long, window: Long, windowWidth: Int, windowHeight: Int) {
+        currentScreen?.clearScreen(nvg, window, windowWidth, windowHeight)
     }
 }

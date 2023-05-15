@@ -1,7 +1,9 @@
 package io.github.sdxqw.termox.ui.basic
 
-abstract class UIComponent(var x: Float, var y: Float, var width: Float, var height: Float) {
-    abstract fun draw()
+abstract class UIComponent {
+    abstract fun render(nvg: Long, window: Long, windowWidth: Int, windowHeight: Int)
 
-    abstract fun update()
+    abstract fun updateState(nvg: Long, window: Long, windowWidth: Int, windowHeight: Int)
+
+    abstract fun clearState(nvg: Long, window: Long, windowWidth: Int, windowHeight: Int)
 }

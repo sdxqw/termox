@@ -1,9 +1,11 @@
 package io.github.sdxqw.termox
 
 import io.github.sdxqw.termox.core.LWJGL
+import io.github.sdxqw.termox.grapichs.font.FontManager
 import io.github.sdxqw.termox.ui.ManagerUI
+import io.github.sdxqw.termox.utils.Utils
 
-class Termox : LWJGL {
+class Termox : LWJGL() {
     companion object {
         private val instance = Termox()
 
@@ -14,18 +16,20 @@ class Termox : LWJGL {
 
     private val managerUI = ManagerUI()
 
-    override fun initialize() {
+    override fun initialize(nvg: Long, window: Long) {
+        FontManager.loadFonts(nvg)
+        managerUI.initializeScreen()
     }
 
-    override fun renderFrame() {
-        managerUI.setScreen("MainMenu")
+    override fun renderFrame(nvg: Long, window: Long) {
+        managerUI.drawScreen(nvg, window, Utils.width, Utils.height)
     }
 
-    override fun updateGameState() {
-
+    override fun updateGameState(nvg: Long, window: Long) {
+        managerUI.updateScreen(nvg, window, Utils.width, Utils.height)
     }
 
-    override fun cleanup() {
-
+    override fun cleanup(nvg: Long, window: Long) {
+        managerUI.clearScreen(nvg, window, Utils.width, Utils.height)
     }
 }
