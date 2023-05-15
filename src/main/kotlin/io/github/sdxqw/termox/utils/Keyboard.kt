@@ -65,6 +65,14 @@ object Keyboard {
         }
     }
 
+    fun onEnter(window: Long, action: Int, callback: (Any?) -> Unit) {
+        if (action == GLFW.GLFW_PRESS) {
+            val key = GLFW.GLFW_KEY_ENTER
+            if (GLFW.glfwGetKey(window, key) == GLFW.GLFW_PRESS) {
+                callback(this)
+            }
+        }
+    }
 
     private fun isShiftKeyPressed(window: Long): Boolean {
         val shiftState = GLFW.glfwGetKey(window, GLFW.GLFW_KEY_LEFT_SHIFT) == GLFW.GLFW_PRESS || GLFW.glfwGetKey(

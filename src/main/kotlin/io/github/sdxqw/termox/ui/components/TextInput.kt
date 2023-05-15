@@ -1,5 +1,6 @@
 package io.github.sdxqw.termox.ui.components
 
+import io.github.sdxqw.termox.Termox
 import io.github.sdxqw.termox.grapichs.NanoVGC
 import io.github.sdxqw.termox.grapichs.font.FontManager
 import io.github.sdxqw.termox.ui.basic.UIComponent
@@ -54,6 +55,13 @@ class TextInput(
     override fun updateState(nvg: Long, window: Long, windowWidth: Int, windowHeight: Int) {
         GLFW.glfwSetKeyCallback(window) { _, key, _, action, _ ->
             Keyboard.onKey(window, textInput, key, action)
+            Keyboard.onEnter(window, action, ({
+                Termox.getInstance().commandManager.commands.forEach {
+                    it.execute(
+                        mutableListOf(getTextInput)
+                    )
+                }
+            }))
         }
     }
 
